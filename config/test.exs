@@ -8,8 +8,8 @@ import Config
 config :labrat, Labrat.Repo,
   username: "postgres",
   password: "postgres",
-  database: "labrat_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
+  database: "labrat_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
@@ -17,7 +17,7 @@ config :labrat, Labrat.Repo,
 # you can enable the server option below.
 config :labrat, LabratWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "PSvws9RzynpeFsZWaAhuv62u4hA74Q2sTV4etjK2vMOjwHtd60yYn1IvWkmnrXJ0",
+  secret_key_base: "3g9wB0q3Xa0V/D9R9g0q+k8eU1StfI1KwcBHvkl84NOsyGx8xYckmYMKwwfc2hAa",
   server: false
 
 # In test we don't send emails.

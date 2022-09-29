@@ -4,8 +4,9 @@ import Config
 config :labrat, Labrat.Repo,
   username: "postgres",
   password: "postgres",
-  database: "labrat_dev",
   hostname: "localhost",
+  database: "labrat_dev",
+  stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -22,7 +23,7 @@ config :labrat, LabratWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "P9gr9oGt0ssv9b7gIxkVjjz0HJMY0nyI+kfWuisO2HV9v157N12UKnSCb+UxP5hf",
+  secret_key_base: "nCY50YoEY/1Cmfg2TM5ejNxLHjOmsXkwbRc/H2ZojUmxMLc4QaASQgd9++Iz1Shq",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}

@@ -7,7 +7,7 @@ defmodule LabratWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_labrat_key",
-    signing_salt: "FR61UeeX"
+    signing_salt: "dQG9UNcD"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
