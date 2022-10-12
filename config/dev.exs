@@ -26,7 +26,8 @@ config :labrat, LabratWeb.Endpoint,
   secret_key_base: "nCY50YoEY/1Cmfg2TM5ejNxLHjOmsXkwbRc/H2ZojUmxMLc4QaASQgd9++Iz1Shq",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # ## SSL Support
