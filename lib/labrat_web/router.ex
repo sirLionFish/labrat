@@ -20,6 +20,11 @@ defmodule LabratWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/app", LabratWeb do
+    get "/", WebappController, :index
+    get "/*path", WebappController, :index
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", LabratWeb do
   #   pipe_through :api
