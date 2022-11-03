@@ -48,6 +48,18 @@ defmodule LabratWeb do
         layout: {LabratWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
+      import LabratWeb.LiveHelpers
+      alias Labrat.Accounts.User
+
+      def handle_info(%{event: "logout_user", payload: %{user: %User{id: id}}}, socket) do
+        with %User{id: ^id} <- socket.assigns.current_user do
+          {:noreply,
+            socket
+            |> redirect(to: Routes.user_session_path(socket, :force_logout))}
+        else
+          _any -> {:noreply, socket}
+        end
+      end
     end
   end
 
@@ -91,6 +103,7 @@ defmodule LabratWeb do
 
       # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
       import Phoenix.LiveView.Helpers
+      import LabratWeb.LiveHelpers
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View

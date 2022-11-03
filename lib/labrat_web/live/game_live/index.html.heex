@@ -1,0 +1,52 @@
+<h1>Listing Games</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.game_index_path(@socket, :index)}>
+    <.live_component
+      module={LabratWeb.GameLive.FormComponent}
+      id={@game.id || :new}
+      title={@page_title}
+      action={@live_action}
+      game={@game}
+      current_user: @current_user
+      return_to={Routes.game_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Date</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="games">
+    <%= for game <- @games do %>
+      <tr id={"game-#{game.id}"}>
+        <td><%= game.name %></td>
+        <td><%= game.price %></td>
+        <td><%= game.date %></td>
+        <td><%= game.description %></td>
+
+        <td>
+          <%= if Roles.can?(@current_user, game, :show) do %>
+            <span><%= live_redirect "Show", to: Routes.game_show_path(@socket, :show, game) %></span>
+          <% end %>
+          <%= if Roles.can?(@current_user, game, :edit) do %>
+            <span><%= live_patch "Edit", to: Routes.game_index_path(@socket, :edit, game) %></span>
+          <% end %>
+          <%= if Roles.can?(@current_user, game, :delete) do %>
+            <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: game.id, data: [confirm: "Are you sure?"] %></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Game", to: Routes.game_index_path(@socket, :new) %></span>
