@@ -7,10 +7,9 @@ defmodule LabratWeb.Roles do
   alias Labrat.Games.Game
 
   @type entity :: struct()
-  @type action :: :new | :index | :edit | :show | :delate
+  @type action :: :new | :index | :edit | :show | :delete
 
-  #8 can?'s
-  @spec can?(%User{}, entity(), action()) :: boolean()
+  #8 can? functions
   def can?(user, entity, action)
   def can?(%User{permissions: :admin}, %Game{}, _any), do: true
   def can?(%User{}, %Game{}, :index), do: true

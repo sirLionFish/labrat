@@ -5,8 +5,12 @@ defmodule LabratWeb.EnsureRolePlug do
   alias Phoenix.Controller
   # alias Plug.Conn
 
+  @doc false
+  @spec init(any()) :: any()
   def init(config), do: config
 
+  @doc false
+  @spec call(Conn.t(), atom() | [atom()]) :: Conn.t()
   def call(conn, permissions) do
     user_token = get_session(conn, :user_token)
 
